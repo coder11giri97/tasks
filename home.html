@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head >Expense tracker</head><br> <br> 
+    <p>Fill the falowing detailes</p>
+    <body>
+        <form onsubmit="saveToLocalStorage(event)">
+            <lable>Expense amount :</lable><br> 
+
+            <input type="text" name="money" required><br> <br>
+
+            <lable>Discription:</lable><br> 
+
+            <input type="text" name="discription" required><br> <br>
+
+            <lable>Choose catagory:</lable><br> 
+
+            <input list="catagory" name="category"><br><br>
+            <datalist id="catagory">
+
+                <option value="Movie">
+                <option value="Shoping">
+                <option value="Gym">  
+                <option value="Health"> 
+                <option value="Education"> 
+                 <option value="Friends"> 
+                </option>
+            </datalist>    
+
+            <input type="submit" value="Add Expenses">
+
+        </form>
+        <ul id='listOfUsers'></ul>
+        <script>
+           
+    function saveToLocalStorage(event){
+        event.preventDefault();
+        const money=event.target.money.value;
+        const discription=event.target.discription.value;
+        const category = event.target.category.value;
+        
+        const obj={
+            money,
+            discription,
+            category
+    }
+    localStorage.setItem(obj.discription,JSON.stringify(obj));
+    showdetailsOnScreen(obj)
+}
+    // var item=document.getElementById("discription");
+    //             item.addEventListener("click",removeItem);
+    function showdetailsOnScreen(user){
+        const parentNode = document.getElementById('listOfUsers');
+        const childHTML = `<li> Expense amount is${user.money} used for ${user.discription}-${user.category} Catagory</li>`;
+        parentNode.innerHTML = parentNode.innerHTML + childHTML;
+    }
+    // function removeItem(event){
+    //     if(event.target.contains('delete'))
+    //     [
+    //         var li = event.target.parentElemant;
+    //         item.removeChild(li);
+    //     ]
+    // }
+
+
+        </script>
+    </body>
+</html>
